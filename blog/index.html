@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Vincent van Sas – Sales, Marketing & IT Insights</title>
+    <meta name="description" content="Praktische inzichten over sales, marketing, IT en cybersecurity van Vincent van Sas. Lees hoe commerciële strategie en technologie samen groeien creëren.">
+    <link rel="canonical" href="https://www.vansassales.nl/blog/">
+    <meta property="og:title" content="Blog | Vincent van Sas – Sales, Marketing & IT Insights">
+    <meta property="og:description" content="Praktische inzichten over sales, marketing, IT en cybersecurity.">
+    <meta property="og:url" content="https://www.vansassales.nl/blog/">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a5c 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .blog-hero h1 { font-size: 2.8rem; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; }
+        .blog-hero p { font-size: 1.15rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+        .blog-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .blog-card-content { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+        .blog-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .blog-card h2 { font-size: 1.3rem; color: var(--primary-color); margin-bottom: 0.75rem; font-family: 'Montserrat', sans-serif; line-height: 1.4; }
+        .blog-card p { color: #666; line-height: 1.7; font-size: 0.95rem; flex: 1; }
+        .blog-meta { font-size: 0.85rem; color: #999; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee; }
+        .blog-read-more {
+            display: inline-block;
+            margin-top: 1.25rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .blog-read-more:hover { color: var(--accent-color); }
+
+        .blog-section { background: var(--background-color); }
+
+        @media(max-width: 1024px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 768px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .blog-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/"><img src="../logo.png" alt="van Sas Sales Consultancy" class="logo-img"></a></div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#over">Over</a></li>
+                    <li><a href="/#diensten">Diensten</a></li>
+                    <li><a href="/#aanpak">Mijn Aanpak</a></li>
+                    <li><a href="/blog/" style="color: var(--accent-color);">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="blog-hero">
+        <div class="container">
+            <h1>Inzichten & Expertise</h1>
+            <p>Praktische kennis over sales, marketing, IT en cybersecurity — geschreven vanuit decennia ervaring in de boardroom en op de werkvloer.</p>
+        </div>
+    </div>
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <span class="blog-tag">Cybersecurity & Sales</span>
+                        <h2>Waarom cybersecurity een commercieel argument is — geen IT-kostenpost</h2>
+                        <p>Veel bedrijven behandelen cybersecurity als een technische verplichting. Maar de slimste organisaties zetten het in als concurrentievoordeel en verkoopargument richting klanten.</p>
+                        <div class="blog-meta">Vincent van Sas · 16 juni 2025 · 5 min leestijd</div>
+                        <a href="cybersecurity-commercieel-argument.html" class="blog-read-more">Lees artikel →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <span class="blog-tag">Marketing & IT</span>
+                        <h2>Go-to-market in de IT-sector: waarom de klassieke aanpak niet meer werkt</h2>
+                        <p>De IT-markt verandert sneller dan ooit. Traditionele go-to-market strategieën schieten tekort. Wat werkt er wél als je een technisch product aan beslissers wilt verkopen?</p>
+                        <div class="blog-meta">Vincent van Sas · 9 juni 2025 · 6 min leestijd</div>
+                        <a href="go-to-market-it-sector.html" class="blog-read-more">Lees artikel →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <span class="blog-tag">Sales Leadership</span>
+                        <h2>Van 50 miljoen naar 400 miljoen: de lessen die ik leerde als marketingdirecteur</h2>
+                        <p>Hoe schaal je een bedrijf met een factor 8? Niet door harder te werken, maar door slimmer te positioneren. De drie strategische keuzes die het verschil maakten.</p>
+                        <div class="blog-meta">Vincent van Sas · 2 juni 2025 · 7 min leestijd</div>
+                        <a href="van-50-naar-400-miljoen.html" class="blog-read-more">Lees artikel →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Laten we Praten</h2>
+            <p>Staat u voor een commerciële uitdaging? Neem contact op voor een vrijblijvend strategisch gesprek.</p>
+            <p class="contact-info">Email: <a href="mailto:info@vansassales.nl" class="email-link">info@vansassales.nl</a></p>
+            <p class="copyright">&copy; 2025 van Sas Sales & Marketing. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
