@@ -7,62 +7,43 @@ import random
 
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 
-# Onderwerpen gebaseerd op de 5 pijlers van moderne demand generation
-# Geen zelfpromotie — generieke, waardevolle inzichten voor de doelgroep
 TOPICS = [
-    # PIJLER 1: AUTORITEIT
-    {"topic": "Waarom autoriteit de enige duurzame bron van B2B-pipeline is", "pillar": "Autoriteit", "tag": "Demand Generation"},
-    {"topic": "Het verschil tussen naam en autoriteit in B2B-sales", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Hoe thought leadership werkt als je het consequent volhoudt", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Waarom de meeste B2B-bedrijven nooit autoriteit opbouwen — en wat ze eraan kunnen doen", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Autoriteit in een niche: waarom smal beter is dan breed", "pillar": "Autoriteit", "tag": "Autoriteit"},
-
-    # PIJLER 2: AUTHENTICITEIT
-    {"topic": "Authenticiteit als onderscheidend vermogen in B2B-marketing", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-    {"topic": "Waarom kopers AI-gegenereerde content meteen herkennen — en wat dat betekent voor jouw strategie", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-    {"topic": "De terugkeer van de menselijke stem in B2B-content", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-    {"topic": "Hoe authentieke merken meer pipeline genereren dan gepolijste campagnes", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-
-    # PIJLER 3: RELEVANTIE
-    {"topic": "Relevantie is geen contentprobleem — het is een strategie-probleem", "pillar": "Relevantie", "tag": "Demand Generation"},
-    {"topic": "Hoe je bepaalt wat je doelgroep echt bezighoudt — en hoe je daarop inspeelt", "pillar": "Relevantie", "tag": "Relevantie"},
-    {"topic": "Dark social en de onzichtbare koopbeslissing: wat B2B-marketeers missen", "pillar": "Relevantie", "tag": "Demand Generation"},
-    {"topic": "Waarom 9 van de 13 contactmomenten voor een B2B-deal onzichtbaar zijn", "pillar": "Relevantie", "tag": "Demand Generation"},
-    {"topic": "ICP-focus: de kracht van kiezen wie je niet als klant wilt", "pillar": "Relevantie", "tag": "Relevantie"},
-
-    # PIJLER 4: CONSISTENTIE
-    {"topic": "Consistentie is de meest onderschatte groeistrategie in B2B", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Waarom de meeste B2B-contentstrategieën na drie maanden stoppen", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Het compounding effect van consistente aanwezigheid in jouw markt", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Hoe je een contentritme opbouwt dat je ook volhoudt zonder groot team", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Van campagnedenken naar altijd-aan marketing: de mentale switch die alles verandert", "pillar": "Consistentie", "tag": "Demand Generation"},
-
-    # PIJLER 5: COMMUNITY & NETWERK
+    {"topic": "Demand generation versus leadgeneratie: het fundamentele verschil dat uw aanpak bepaalt", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Waarom autoriteit de enige duurzame bron van B2B-pipeline is", "pillar": "Autoriteit", "tag": "Autoriteit"},
     {"topic": "Community als demand generation kanaal: wat de data zegt", "pillar": "Community", "tag": "Community"},
-    {"topic": "Waarom B2B-kopers vertrouwen op peers, niet op vendors", "pillar": "Community", "tag": "Community"},
-    {"topic": "Hoe je een B2B-community opbouwt die daadwerkelijk pipeline genereert", "pillar": "Community", "tag": "Community"},
-    {"topic": "Het verschil tussen een netwerk en een community — en waarom dat uitmaakt", "pillar": "Community", "tag": "Community"},
-    {"topic": "Hoe community-led growth werkt voor kleine B2B-teams", "pillar": "Community", "tag": "Community"},
-    {"topic": "Van contacten naar klanten: hoe je netwerk een commercieel kanaal wordt", "pillar": "Community", "tag": "Community"},
-
-    # DEMAND GENERATION OVERKOEPELEND
-    {"topic": "Demand generation versus leadgeneratie: het fundamentele verschil dat je aanpak bepaalt", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Consistentie is de meest onderschatte groeistrategie in B2B", "pillar": "Consistentie", "tag": "Consistentie"},
+    {"topic": "Authenticiteit als onderscheidend vermogen in B2B-marketing", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
     {"topic": "Waarom 94% van B2B-kopers al een voorkeursleverancier heeft voor het eerste gesprek", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Het einde van de koude acquisitie: wat de data zegt over outbound in 2026", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Hoe moderne B2B-kopers beslissingen nemen — en wat dat betekent voor jouw go-to-market", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Waarom de marketingfunnel niet meer bestaat — en wat ervoor in de plaats is gekomen", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Het verschil tussen een netwerk en een community en waarom dat uw omzet bepaalt", "pillar": "Community", "tag": "Community"},
+    {"topic": "Hoe thought leadership werkt als je het consequent volhoudt", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "Waarom de meeste B2B-contentstrategieeen na drie maanden stoppen", "pillar": "Consistentie", "tag": "Consistentie"},
+    {"topic": "Dark social en de onzichtbare koopbeslissing: wat B2B-marketeers missen", "pillar": "Relevantie", "tag": "Demand Generation"},
+    {"topic": "Hoe authentieke merken meer pipeline genereren dan gepolijste campagnes", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
+    {"topic": "Waarom kopers AI-gegenereerde content meteen herkennen en wat dat betekent voor uw strategie", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
+    {"topic": "Het compounding effect van consistente aanwezigheid in uw markt", "pillar": "Consistentie", "tag": "Consistentie"},
+    {"topic": "Hoe je een B2B-community opbouwt die daadwerkelijk pipeline genereert", "pillar": "Community", "tag": "Community"},
+    {"topic": "Relevantie is geen contentprobleem het is een strategie-probleem", "pillar": "Relevantie", "tag": "Relevantie"},
+    {"topic": "Waarom de marketingfunnel niet meer bestaat en wat ervoor in de plaats is gekomen", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Autoriteit in een niche: waarom smal beter is dan breed", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "Hoe community-led growth werkt voor kleine B2B-teams", "pillar": "Community", "tag": "Community"},
+    {"topic": "Van campagnedenken naar altijd-aan marketing: de mentale switch die alles verandert", "pillar": "Consistentie", "tag": "Demand Generation"},
+    {"topic": "Hoe moderne B2B-kopers beslissingen nemen en wat dat betekent voor uw go-to-market", "pillar": "Demand Generation", "tag": "Demand Generation"},
     {"topic": "Buitenlandse bedrijven in Nederland: hoe demand generation werkt in een nieuwe markt", "pillar": "Demand Generation", "tag": "Marktentree"},
+    {"topic": "Hoe je bepaalt wat je doelgroep echt bezighoudt en hoe je daarop inspeelt", "pillar": "Relevantie", "tag": "Relevantie"},
+    {"topic": "LinkedIn als demand generation kanaal: van likes naar pipeline", "pillar": "Community", "tag": "Community"},
+    {"topic": "Thought leadership zonder zelfpromotie: hoe je autoriteit opbouwt door anderen te helpen", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "Waarom B2B-kopers vertrouwen op peers niet op vendors", "pillar": "Community", "tag": "Community"},
 ]
 
 RESEARCH_FACTS = [
     "94% van B2B-koopgroepen heeft al een voorkeursleverancier bepaald voor het eerste gesprek met sales (6sense, 2025)",
-    "B2B-kopers consumeren gemiddeld 13 stukken content voor ze met sales spreken — 9 daarvan in kanalen die marketeers niet kunnen tracken (HubSpot, 2025)",
+    "B2B-kopers consumeren gemiddeld 13 stukken content voor ze met sales spreken, waarvan 9 in kanalen die marketeers niet kunnen tracken (HubSpot, 2025)",
     "73% van B2B-marketeers rapporteert dalende performance van tactieken die in 2023 nog werkten (LinkedIn B2B Marketing Benchmark, 2025)",
     "B2B-bedrijven met actieve communities zien 28% hogere klantretentie en 43% snellere deal velocity (CMX Community Report, 2025)",
-    "Bedrijven die hun aanpak aanpasten zagen 2,4x verbetering in pipeline efficiency (LinkedIn, 2025)",
+    "Bedrijven die hun aanpak aanpasten richting demand generation zagen 2,4x meer pipeline-efficientie (LinkedIn, 2025)",
     "83% van B2B-kopers rondt 70% van het onderzoek af voor ze met een salesvertegenwoordiger spreken (Gartner)",
     "Het bouwen van autoriteit kost 6-12 maanden voor je significante, voorspelbare pipeline-impact ziet (MarketBetter, 2025)",
-    "96% van B2B-marketeers gebruikt AI voor contentcreatie, maar kwaliteit en merkidentiteit bewaken is de #1 uitdaging (Demand Gen Report, 2026)",
+    "96% van B2B-marketeers gebruikt AI voor contentcreatie, maar kwaliteit bewaken is de nummer 1 uitdaging (Demand Gen Report, 2026)",
 ]
 
 def slugify(text):
@@ -115,37 +96,29 @@ def generate_article(topic_obj):
     prompt = f"""Write a professional B2B blog article in Dutch for vansassales.nl.
 
 TOPIC: {topic}
-PILLAR: {pillar} (one of the five pillars of modern demand generation: Autoriteit, Authenticiteit, Relevantie, Consistentie, Community)
+PILLAR: {pillar}
 
-TONE AND STYLE:
-- Written as independent expert analysis, NOT as personal promotion
-- No "I have X years of experience" or "in my career as director..."
-- Write like a respected industry analyst or senior consultant sharing market insights
-- Direct, critical, substantive — challenge conventional thinking where relevant
-- Use concrete data and research to back up claims
-- Dutch language throughout
+TONE: Independent expert analysis. No personal career stories. No "I have X years experience". Write like a respected industry analyst sharing market insights. Direct, critical, substantive. Use concrete data.
 
-RESEARCH DATA TO USE (include at least 2 of these facts naturally in the article):
+RESEARCH DATA (include at least 2 facts naturally):
 {facts_text}
 
-THE FIVE PILLARS CONTEXT (weave in where relevant):
-Modern demand generation rests on five pillars: authority, authenticity, relevance, consistency, and community building. Traditional lead generation as a standalone activity is outdated. Without these pillars in place, lead generation is expensive and ineffective. Buyers make decisions long before they contact vendors.
+CONTEXT: Modern demand generation rests on five pillars: authority, authenticity, relevance, consistency, and community. Traditional lead generation as standalone activity is outdated. Buyers decide before contacting vendors.
 
-IMPORTANT: Return ONLY valid JSON, no markdown, no backticks, no explanation. Use only straight double quotes. Keep text simple to avoid JSON errors.
+Return ONLY valid JSON, no markdown, no backticks. Straight double quotes only.
 
-JSON format:
 {{
-  "title": "Compelling article title, max 10 words",
-  "intro": "Strong opening that names the problem or insight directly. 3-4 sentences. No self-promotion.",
-  "quote": "A sharp, provocative insight that captures the article essence. Max 15 words.",
+  "title": "Compelling title max 10 words",
+  "intro": "Strong opening naming the problem directly. 3-4 sentences. No self-promotion.",
+  "quote": "Sharp provocative insight max 15 words.",
   "section1_heading": "First section title",
-  "section1_content": "200-250 words. Two paragraphs. Concrete, data-backed where possible.",
+  "section1_content": "Two paragraphs 3-4 sentences each. Concrete with data.",
   "section2_heading": "Second section title",
-  "section2_content": "200-250 words. Two paragraphs.",
+  "section2_content": "Two paragraphs 3-4 sentences each.",
   "section3_heading": "Third section title",
-  "section3_content": "200-250 words. Two paragraphs with practical takeaway.",
-  "conclusion": "Closing paragraph. Thought-provoking, not salesy. 3-4 sentences.",
-  "meta_description": "SEO meta description, max 150 characters"
+  "section3_content": "Two paragraphs with practical takeaway.",
+  "conclusion": "Closing 3-4 sentences. Thought-provoking not salesy.",
+  "meta_description": "SEO meta max 150 characters"
 }}"""
 
     message = client.messages.create(
@@ -158,7 +131,6 @@ JSON format:
     print(f"Response preview: {raw[:150]}")
     cleaned = clean_json(raw)
     data = json.loads(cleaned)
-
     data['sections'] = [
         {"heading": data.get('section1_heading', ''), "content": data.get('section1_content', '')},
         {"heading": data.get('section2_heading', ''), "content": data.get('section2_content', '')},
@@ -182,18 +154,6 @@ def build_article_html(data, slug, tag, date_str, date_display):
     <title>{data['title']} | Van Sas Sales & Marketing</title>
     <meta name="description" content="{meta_desc}">
     <link rel="canonical" href="https://www.vansassales.nl/blog/{slug}.html">
-    <script type="application/ld+json">
-    {{
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "{data['title']}",
-      "author": {{"@type": "Person", "name": "Vincent van Sas", "url": "https://www.vansassales.nl"}},
-      "datePublished": "{date_str}",
-      "publisher": {{"@type": "Organization", "name": "Van Sas Sales & Marketing", "url": "https://www.vansassales.nl"}},
-      "url": "https://www.vansassales.nl/blog/{slug}.html",
-      "keywords": "demand generation, {tag.lower()}, B2B marketing, leadgeneratie, community"
-    }}
-    </script>
     <link rel="stylesheet" href="../style.css">
     <style>
         .article-hero {{background:linear-gradient(135deg,#0a2342 0%,#1a3a5c 100%);color:#fff;padding:4rem 0;}}
@@ -255,7 +215,7 @@ def build_article_html(data, slug, tag, date_str, date_display):
             <p>Neem contact op voor een vrijblijvend gesprek over demand generation voor uw organisatie.</p>
             <p class="contact-info">Email: <a href="mailto:info@vansassales.nl" class="email-link">info@vansassales.nl</a></p>
             <p class="contact-info">Tel: <a href="tel:+31613144827" class="email-link">+31 (0)6 13 14 48 27</a></p>
-            <p class="copyright">&copy; 2025 Van Sas Sales &amp; Marketing. Alle rechten voorbehouden.</p>
+            <p class="copyright">&copy; 2026 Van Sas Sales &amp; Marketing. Alle rechten voorbehouden.</p>
         </div>
     </footer>
 </body>
@@ -283,6 +243,24 @@ def format_dutch_date(now):
     months = ['januari','februari','maart','april','mei','juni',
               'juli','augustus','september','oktober','november','december']
     return f"{now.day} {months[now.month-1]} {now.year}"
+
+def update_sitemap(slug, date_str):
+    try:
+        with open('sitemap.xml', 'r') as f:
+            sitemap = f.read()
+        new_url = f"""  <url>
+    <loc>https://www.vansassales.nl/blog/{slug}.html</loc>
+    <lastmod>{date_str}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>"""
+        sitemap = sitemap.replace('</urlset>', new_url)
+        with open('sitemap.xml', 'w') as f:
+            f.write(sitemap)
+        print(f"Sitemap bijgewerkt met {slug}")
+    except Exception as e:
+        print(f"Sitemap update mislukt: {e}")
 
 def main():
     topic_obj = pick_topic()
@@ -316,26 +294,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-def update_sitemap(slug, date_str):
-    """Add new article to sitemap.xml"""
-    try:
-        with open('../sitemap.xml', 'r') as f:
-            sitemap = f.read()
-        
-        new_url = f"""  <url>
-    <loc>https://www.vansassales.nl/blog/{slug}.html</loc>
-    <lastmod>{date_str}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>"""
-        
-        sitemap = sitemap.replace('</urlset>', new_url)
-        
-        with open('../sitemap.xml', 'w') as f:
-            f.write(sitemap)
-        print(f"Sitemap bijgewerkt met {slug}")
-    except Exception as e:
-        print(f"Sitemap update mislukt: {e}")
