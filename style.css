@@ -299,20 +299,21 @@ footer p {
 .contact-info {
     font-size: 1.1rem;
     margin: 0.4rem auto;
-    text-align: center;
+    text-align: center !important;
     display: block;
+    color: var(--white) !important;
 }
 
 .email-link {
-    color: var(--white);
-    text-decoration: none;
+    color: var(--white) !important;
+    text-decoration: none !important;
     font-weight: 600;
     transition: opacity 0.3s ease;
 }
 
 footer .email-link:hover {
     opacity: 0.8;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 footer .copyright {
@@ -589,22 +590,22 @@ footer .copyright {
 
 /* CTA block */
 #cta-section {
-    background: var(--primary-color);
+    background: var(--primary-color) !important;
     padding: 4rem 0;
 }
 .cta-block {
-    text-align: center;
+    text-align: center !important;
     max-width: 700px;
     margin: 0 auto;
 }
 .cta-block h2 {
-    color: var(--white);
+    color: var(--white) !important;
     font-size: 2rem;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 1rem;
 }
 .cta-block p {
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,0.85) !important;
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 2rem;
@@ -612,8 +613,8 @@ footer .copyright {
 
 /* Inline CTA link */
 .cta-inline-link {
-    color: var(--white);
-    text-decoration: none;
+    color: var(--white) !important;
+    text-decoration: none !important;
     font-weight: 700;
     font-size: 1.15rem;
     letter-spacing: 0.3px;
