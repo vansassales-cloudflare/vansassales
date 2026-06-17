@@ -321,7 +321,7 @@ if __name__ == '__main__':
 def update_sitemap(slug, date_str):
     """Add new article to sitemap.xml"""
     try:
-        with open('sitemap.xml', 'r') as f:
+        with open('../sitemap.xml', 'r') as f:
             sitemap = f.read()
         
         new_url = f"""  <url>
@@ -334,7 +334,7 @@ def update_sitemap(slug, date_str):
         
         sitemap = sitemap.replace('</urlset>', new_url)
         
-        with open('sitemap.xml', 'w') as f:
+        with open('../sitemap.xml', 'w') as f:
             f.write(sitemap)
         print(f"Sitemap bijgewerkt met {slug}")
     except Exception as e:
