@@ -4,9 +4,9 @@ import json
 import re
 from datetime import datetime
 import random
- 
+
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
- 
+
 # Onderwerpen gebaseerd op de 5 pijlers van moderne demand generation
 # Geen zelfpromotie — generieke, waardevolle inzichten voor de doelgroep
 TOPICS = [
@@ -16,27 +16,27 @@ TOPICS = [
     {"topic": "Hoe thought leadership werkt als je het consequent volhoudt", "pillar": "Autoriteit", "tag": "Autoriteit"},
     {"topic": "Waarom de meeste B2B-bedrijven nooit autoriteit opbouwen — en wat ze eraan kunnen doen", "pillar": "Autoriteit", "tag": "Autoriteit"},
     {"topic": "Autoriteit in een niche: waarom smal beter is dan breed", "pillar": "Autoriteit", "tag": "Autoriteit"},
- 
+
     # PIJLER 2: AUTHENTICITEIT
     {"topic": "Authenticiteit als onderscheidend vermogen in B2B-marketing", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
     {"topic": "Waarom kopers AI-gegenereerde content meteen herkennen — en wat dat betekent voor jouw strategie", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
     {"topic": "De terugkeer van de menselijke stem in B2B-content", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
     {"topic": "Hoe authentieke merken meer pipeline genereren dan gepolijste campagnes", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
- 
+
     # PIJLER 3: RELEVANTIE
     {"topic": "Relevantie is geen contentprobleem — het is een strategie-probleem", "pillar": "Relevantie", "tag": "Demand Generation"},
     {"topic": "Hoe je bepaalt wat je doelgroep echt bezighoudt — en hoe je daarop inspeelt", "pillar": "Relevantie", "tag": "Relevantie"},
     {"topic": "Dark social en de onzichtbare koopbeslissing: wat B2B-marketeers missen", "pillar": "Relevantie", "tag": "Demand Generation"},
     {"topic": "Waarom 9 van de 13 contactmomenten voor een B2B-deal onzichtbaar zijn", "pillar": "Relevantie", "tag": "Demand Generation"},
     {"topic": "ICP-focus: de kracht van kiezen wie je niet als klant wilt", "pillar": "Relevantie", "tag": "Relevantie"},
- 
+
     # PIJLER 4: CONSISTENTIE
     {"topic": "Consistentie is de meest onderschatte groeistrategie in B2B", "pillar": "Consistentie", "tag": "Consistentie"},
     {"topic": "Waarom de meeste B2B-contentstrategieën na drie maanden stoppen", "pillar": "Consistentie", "tag": "Consistentie"},
     {"topic": "Het compounding effect van consistente aanwezigheid in jouw markt", "pillar": "Consistentie", "tag": "Consistentie"},
     {"topic": "Hoe je een contentritme opbouwt dat je ook volhoudt zonder groot team", "pillar": "Consistentie", "tag": "Consistentie"},
     {"topic": "Van campagnedenken naar altijd-aan marketing: de mentale switch die alles verandert", "pillar": "Consistentie", "tag": "Demand Generation"},
- 
+
     # PIJLER 5: COMMUNITY & NETWERK
     {"topic": "Community als demand generation kanaal: wat de data zegt", "pillar": "Community", "tag": "Community"},
     {"topic": "Waarom B2B-kopers vertrouwen op peers, niet op vendors", "pillar": "Community", "tag": "Community"},
@@ -44,7 +44,7 @@ TOPICS = [
     {"topic": "Het verschil tussen een netwerk en een community — en waarom dat uitmaakt", "pillar": "Community", "tag": "Community"},
     {"topic": "Hoe community-led growth werkt voor kleine B2B-teams", "pillar": "Community", "tag": "Community"},
     {"topic": "Van contacten naar klanten: hoe je netwerk een commercieel kanaal wordt", "pillar": "Community", "tag": "Community"},
- 
+
     # DEMAND GENERATION OVERKOEPELEND
     {"topic": "Demand generation versus leadgeneratie: het fundamentele verschil dat je aanpak bepaalt", "pillar": "Demand Generation", "tag": "Demand Generation"},
     {"topic": "Waarom 94% van B2B-kopers al een voorkeursleverancier heeft voor het eerste gesprek", "pillar": "Demand Generation", "tag": "Demand Generation"},
@@ -53,7 +53,7 @@ TOPICS = [
     {"topic": "Waarom de marketingfunnel niet meer bestaat — en wat ervoor in de plaats is gekomen", "pillar": "Demand Generation", "tag": "Demand Generation"},
     {"topic": "Buitenlandse bedrijven in Nederland: hoe demand generation werkt in een nieuwe markt", "pillar": "Demand Generation", "tag": "Marktentree"},
 ]
- 
+
 RESEARCH_FACTS = [
     "94% van B2B-koopgroepen heeft al een voorkeursleverancier bepaald voor het eerste gesprek met sales (6sense, 2025)",
     "B2B-kopers consumeren gemiddeld 13 stukken content voor ze met sales spreken — 9 daarvan in kanalen die marketeers niet kunnen tracken (HubSpot, 2025)",
@@ -64,7 +64,7 @@ RESEARCH_FACTS = [
     "Het bouwen van autoriteit kost 6-12 maanden voor je significante, voorspelbare pipeline-impact ziet (MarketBetter, 2025)",
     "96% van B2B-marketeers gebruikt AI voor contentcreatie, maar kwaliteit en merkidentiteit bewaken is de #1 uitdaging (Demand Gen Report, 2026)",
 ]
- 
+
 def slugify(text):
     text = text.lower()
     text = text.encode('ascii', 'ignore').decode('ascii')
@@ -72,17 +72,17 @@ def slugify(text):
     text = re.sub(r'[\s]+', '-', text.strip())
     text = re.sub(r'-+', '-', text)
     return text[:70]
- 
+
 def load_used_topics():
     if os.path.exists('used_topics.json'):
         with open('used_topics.json', 'r') as f:
             return json.load(f)
     return []
- 
+
 def save_used_topics(used):
     with open('used_topics.json', 'w') as f:
         json.dump(used, f)
- 
+
 def pick_topic():
     used = load_used_topics()
     available = [t for t in TOPICS if t['topic'] not in used]
@@ -93,7 +93,7 @@ def pick_topic():
     used.append(topic_obj['topic'])
     save_used_topics(used)
     return topic_obj
- 
+
 def clean_json(raw):
     raw = re.sub(r'^```(?:json)?\s*', '', raw.strip())
     raw = re.sub(r'\s*```$', '', raw)
@@ -105,18 +105,18 @@ def clean_json(raw):
     raw = raw.replace('\u2018', "'").replace('\u2019', "'")
     raw = raw.replace('\u201c', '"').replace('\u201d', '"')
     return raw
- 
+
 def generate_article(topic_obj):
     topic = topic_obj['topic']
     pillar = topic_obj['pillar']
     facts = random.sample(RESEARCH_FACTS, 3)
     facts_text = "\n".join(f"- {f}" for f in facts)
- 
+
     prompt = f"""Write a professional B2B blog article in Dutch for vansassales.nl.
- 
+
 TOPIC: {topic}
 PILLAR: {pillar} (one of the five pillars of modern demand generation: Autoriteit, Authenticiteit, Relevantie, Consistentie, Community)
- 
+
 TONE AND STYLE:
 - Written as independent expert analysis, NOT as personal promotion
 - No "I have X years of experience" or "in my career as director..."
@@ -124,15 +124,15 @@ TONE AND STYLE:
 - Direct, critical, substantive — challenge conventional thinking where relevant
 - Use concrete data and research to back up claims
 - Dutch language throughout
- 
+
 RESEARCH DATA TO USE (include at least 2 of these facts naturally in the article):
 {facts_text}
- 
+
 THE FIVE PILLARS CONTEXT (weave in where relevant):
 Modern demand generation rests on five pillars: authority, authenticity, relevance, consistency, and community building. Traditional lead generation as a standalone activity is outdated. Without these pillars in place, lead generation is expensive and ineffective. Buyers make decisions long before they contact vendors.
- 
+
 IMPORTANT: Return ONLY valid JSON, no markdown, no backticks, no explanation. Use only straight double quotes. Keep text simple to avoid JSON errors.
- 
+
 JSON format:
 {{
   "title": "Compelling article title, max 10 words",
@@ -147,33 +147,33 @@ JSON format:
   "conclusion": "Closing paragraph. Thought-provoking, not salesy. 3-4 sentences.",
   "meta_description": "SEO meta description, max 150 characters"
 }}"""
- 
+
     message = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=2500,
         messages=[{"role": "user", "content": prompt}]
     )
- 
+
     raw = message.content[0].text
     print(f"Response preview: {raw[:150]}")
     cleaned = clean_json(raw)
     data = json.loads(cleaned)
- 
+
     data['sections'] = [
         {"heading": data.get('section1_heading', ''), "content": data.get('section1_content', '')},
         {"heading": data.get('section2_heading', ''), "content": data.get('section2_content', '')},
         {"heading": data.get('section3_heading', ''), "content": data.get('section3_content', '')},
     ]
     return data
- 
+
 def build_article_html(data, slug, tag, date_str, date_display):
     sections_html = ""
     for section in data['sections']:
         content = section['content'].replace('\n\n', '</p><p>').replace('\n', ' ')
         sections_html += f"\n<h2>{section['heading']}</h2>\n<p>{content}</p>"
- 
+
     meta_desc = data.get('meta_description', data['intro'][:150])
- 
+
     return f"""<!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -260,11 +260,11 @@ def build_article_html(data, slug, tag, date_str, date_display):
     </footer>
 </body>
 </html>"""
- 
+
 def load_blog_index():
     with open('blog/index.html', 'r', encoding='utf-8') as f:
         return f.read()
- 
+
 def add_card_to_index(html, title, intro, slug, tag, date_display):
     new_card = f"""
                 <div class="blog-card">
@@ -278,20 +278,20 @@ def add_card_to_index(html, title, intro, slug, tag, date_display):
                 </div>
 """
     return html.replace('<div class="blog-grid">', '<div class="blog-grid">' + new_card, 1)
- 
+
 def format_dutch_date(now):
     months = ['januari','februari','maart','april','mei','juni',
               'juli','augustus','september','oktober','november','december']
     return f"{now.day} {months[now.month-1]} {now.year}"
- 
+
 def main():
     topic_obj = pick_topic()
     print(f"Onderwerp: {topic_obj['topic']}")
     print(f"Pijler: {topic_obj['pillar']}")
- 
+
     data = generate_article(topic_obj)
     print(f"Titel: {data['title']}")
- 
+
     now = datetime.now()
     date_str = now.strftime('%Y-%m-%d')
     date_display = format_dutch_date(now)
@@ -299,18 +299,43 @@ def main():
     if not slug:
         slug = f"artikel-{date_str}"
     tag = topic_obj['tag']
- 
+
     article_path = f'blog/{slug}.html'
     article_html = build_article_html(data, slug, tag, date_str, date_display)
     with open(article_path, 'w', encoding='utf-8') as f:
         f.write(article_html)
     print(f"Artikel: {article_path}")
- 
+
     index_html = load_blog_index()
     updated_index = add_card_to_index(index_html, data['title'], data['intro'], slug, tag, date_display)
     with open('blog/index.html', 'w', encoding='utf-8') as f:
         f.write(updated_index)
     print("Index bijgewerkt")
- 
+
+    update_sitemap(slug, date_str)
+
 if __name__ == '__main__':
     main()
+
+
+def update_sitemap(slug, date_str):
+    """Add new article to sitemap.xml"""
+    try:
+        with open('sitemap.xml', 'r') as f:
+            sitemap = f.read()
+        
+        new_url = f"""  <url>
+    <loc>https://www.vansassales.nl/blog/{slug}.html</loc>
+    <lastmod>{date_str}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>"""
+        
+        sitemap = sitemap.replace('</urlset>', new_url)
+        
+        with open('sitemap.xml', 'w') as f:
+            f.write(sitemap)
+        print(f"Sitemap bijgewerkt met {slug}")
+    except Exception as e:
+        print(f"Sitemap update mislukt: {e}")
