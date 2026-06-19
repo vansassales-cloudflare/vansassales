@@ -2,9 +2,9 @@ name: Automatische Blog Generator
 
 on:
   schedule:
-    - cron: '0 7 * * 1'  # Maandag 07:00 UTC
-    - cron: '0 7 * * 3'  # Woensdag 07:00 UTC
-    - cron: '0 7 * * 5'  # Vrijdag 07:00 UTC
+- cron: '30 7 * * 1'  # Maandag 07:30 UTC
+- cron: '30 7 * * 3'  # Woensdag 07:30 UTC
+- cron: '30 7 * * 5'  # Vrijdag 07:30 UTC
   workflow_dispatch:      # Handmatig starten mogelijk
 
 permissions:
