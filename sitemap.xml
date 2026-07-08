@@ -120,4 +120,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/thought-leadership-werkt-alleen-als-je-stopt-met-jezelf-te-promoten.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
