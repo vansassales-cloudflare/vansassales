@@ -2,18 +2,108 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.vansassales.nl/</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.vansassales.nl/blog/</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.vansassales.nl/blog/demand-generation-vs-leadgeneratie.html</loc>
+    <loc>https://www.vansassales.nl/blog/94-van-b2b-kopers-kiest-leverancier-vr-eerste-gesprek.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/linkedin-als-demand-generation-kanaal-van-likes-naar-pipeline.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/waarom-b2b-kopers-ai-content-meteen-doorzien.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/relevantie-is-geen-contentprobleem-het-is-een-strategie-probleem.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/thought-leadership-werkt-alleen-als-je-stopt-met-jezelf-te-promoten.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/waarom-b2b-contentstrategien-na-drie-maanden-stranden.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/thought-leadership-werkt-alleen-als-je-het-volhoudt.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/waarom-consistente-marktaanwezigheid-uw-sterkste-verkooptool-is.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/consistentie-de-meest-onderschatte-groeistrategie-in-b2b.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/de-marketingfunnel-is-dood-wat-heeft-hem-vervangen.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/wat-je-doelgroep-echt-bezighoudt-en-hoe-je-daarop-inspeelt.html</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/hoe-b2b-kopers-beslissen-voordat-u-berhaupt-belt.html</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/van-campagnedenken-naar-altijd-aan-marketing-de-mentale-switch.html</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/autoriteit-in-een-niche-waarom-smal-altijd-wint.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/community-als-demand-gen-kanaal-wat-de-data-onthult.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/authentieke-merken-winnen-de-pipeline-strijd-van-gepolijste-campagnes.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -31,25 +121,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vansassales.nl/blog/cybersecurity-commercieel-argument.html</loc>
-    <lastmod>2025-06-16</lastmod>
+    <loc>https://www.vansassales.nl/blog/demand-generation-vs-leadgeneratie.html</loc>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vansassales.nl/blog/go-to-market-it-sector.html</loc>
-    <lastmod>2025-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/van-50-naar-400-miljoen.html</loc>
-    <lastmod>2025-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/authentieke-merken-winnen-de-pipeline-strijd-van-gepolijste-campagnes.html</loc>
+    <loc>https://www.vansassales.nl/blog/waarom-b2b-kopers-hun-peers-vertrouwen-niet-jou.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -61,92 +139,20 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vansassales.nl/blog/autoriteit-in-een-niche-waarom-smal-altijd-wint.html</loc>
-    <lastmod>2026-06-19</lastmod>
+    <loc>https://www.vansassales.nl/blog/cybersecurity-commercieel-argument.html</loc>
+    <lastmod>2025-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vansassales.nl/blog/community-als-demand-gen-kanaal-wat-de-data-onthult.html</loc>
-    <lastmod>2026-06-19</lastmod>
+    <loc>https://www.vansassales.nl/blog/go-to-market-it-sector.html</loc>
+    <lastmod>2025-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vansassales.nl/blog/hoe-b2b-kopers-beslissen-voordat-u-berhaupt-belt.html</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/van-campagnedenken-naar-altijd-aan-marketing-de-mentale-switch.html</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/wat-je-doelgroep-echt-bezighoudt-en-hoe-je-daarop-inspeelt.html</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/de-marketingfunnel-is-dood-wat-heeft-hem-vervangen.html</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/consistentie-de-meest-onderschatte-groeistrategie-in-b2b.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/waarom-consistente-marktaanwezigheid-uw-sterkste-verkooptool-is.html</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/thought-leadership-werkt-alleen-als-je-het-volhoudt.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/waarom-b2b-contentstrategien-na-drie-maanden-stranden.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/thought-leadership-werkt-alleen-als-je-stopt-met-jezelf-te-promoten.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/relevantie-is-geen-contentprobleem-het-is-een-strategie-probleem.html</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/waarom-b2b-kopers-ai-content-meteen-doorzien.html</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/linkedin-als-demand-generation-kanaal-van-likes-naar-pipeline.html</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.vansassales.nl/blog/94-van-b2b-kopers-kiest-leverancier-vr-eerste-gesprek.html</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://www.vansassales.nl/blog/van-50-naar-400-miljoen.html</loc>
+    <lastmod>2025-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

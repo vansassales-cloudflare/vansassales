@@ -146,6 +146,26 @@ def build_article_html(data, slug, tag, date_str, date_display):
 
     meta_desc = data.get('meta_description', data['intro'][:150])
 
+    canonical = f"https://www.vansassales.nl/blog/{slug}.html"
+    jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": data['title'],
+        "description": meta_desc,
+        "datePublished": date_str,
+        "dateModified": date_str,
+        "inLanguage": "nl-NL",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+        "image": "https://www.vansassales.nl/vincent.jpg",
+        "author": {"@type": "Person", "name": "Vincent van Sas",
+                   "url": "https://www.vansassales.nl",
+                   "sameAs": ["https://www.linkedin.com/in/vansas/"]},
+        "publisher": {"@type": "Organization", "name": "Van Sas Sales & Marketing",
+                      "url": "https://www.vansassales.nl",
+                      "logo": {"@type": "ImageObject", "url": "https://www.vansassales.nl/logo.png"}}
+    }, ensure_ascii=False, indent=2)
+    esc = lambda s: s.replace('&', '&amp;').replace('"', '&quot;')
+
     return f"""<!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -153,7 +173,18 @@ def build_article_html(data, slug, tag, date_str, date_display):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{data['title']} | Van Sas Sales & Marketing</title>
     <meta name="description" content="{meta_desc}">
-    <link rel="canonical" href="https://www.vansassales.nl/blog/{slug}.html">
+    <link rel="canonical" href="{canonical}">
+    <meta property="og:title" content="{esc(data['title'])}">
+    <meta property="og:description" content="{esc(meta_desc)}">
+    <meta property="og:url" content="{canonical}">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:image" content="https://www.vansassales.nl/vincent.jpg">
+    <meta property="article:published_time" content="{date_str}">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+{jsonld}
+    </script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
