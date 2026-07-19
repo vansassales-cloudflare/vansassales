@@ -501,3 +501,21 @@ footer .copyright {
 .article-body .cta-block { margin-top: 2.5rem; }
 .svc-link { grid-column: 2; justify-self: start; margin-top: 0.6rem; font-size: 0.88rem; font-weight: 600; color: var(--brass-deep); text-decoration: none; }
 .svc-link:hover { color: var(--ink); }
+
+/* ---------- uitklapmenu diensten ---------- */
+header nav ul li.has-sub { position: relative; }
+.has-sub > a::after { content: " \25BE"; font-size: 0.65em; color: var(--brass-deep); }
+.subnav {
+    position: absolute; top: 100%; left: 0; min-width: 250px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    box-shadow: 0 10px 28px rgba(16, 42, 67, 0.14);
+    padding: 0.45rem; margin-top: 0.25rem;
+    display: none; z-index: 1200; list-style: none;
+}
+.has-sub:hover .subnav, .has-sub:focus-within .subnav { display: block; }
+.subnav li { display: block; }
+.subnav li a { display: block; padding: 0.45rem 0.75rem; font-size: 0.85rem; border-radius: 4px; white-space: nowrap; }
+.subnav li a:hover { background: var(--paper); color: var(--brass-deep); }
+@media (max-width: 640px) {
+    .subnav { position: absolute; left: 0; right: auto; }
+}
