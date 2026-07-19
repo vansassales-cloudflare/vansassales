@@ -479,9 +479,6 @@ footer .copyright {
 }
 
 @media (max-width: 640px) {
-    header .container { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-    header nav ul { gap: 0; margin-left: -0.65rem; }
-    header nav ul li a { font-size: 0.84rem; padding: 0.3rem 0.5rem; }
     #hero h1 { font-size: 2.1rem; }
     .hero-facts { grid-template-columns: 1fr 1fr; }
     .hero-buttons { flex-direction: column; align-items: stretch; }
@@ -516,6 +513,26 @@ header nav ul li.has-sub { position: relative; }
 .subnav li { display: block; }
 .subnav li a { display: block; padding: 0.45rem 0.75rem; font-size: 0.85rem; border-radius: 4px; white-space: nowrap; }
 .subnav li a:hover { background: var(--paper); color: var(--brass-deep); }
-@media (max-width: 640px) {
-    .subnav { position: absolute; left: 0; right: auto; }
+
+/* ---------- mobiel hamburgermenu ---------- */
+.nav-toggle {
+    display: none; font-size: 1.3rem; line-height: 1;
+    background: none; border: 1px solid var(--line); border-radius: 4px;
+    padding: 0.35rem 0.6rem; cursor: pointer; color: var(--ink);
+}
+.nav-toggle:hover { border-color: var(--brass); color: var(--brass-deep); }
+
+@media (max-width: 860px) {
+    .nav-toggle { display: block; }
+    header .container { flex-wrap: wrap; }
+    header nav { display: none; flex-basis: 100%; padding-top: 0.6rem; }
+    header nav.open { display: block; }
+    header nav ul { flex-direction: column; align-items: stretch; gap: 0; }
+    header nav ul li a { display: block; font-size: 1rem; padding: 0.65rem 0.25rem; border-bottom: 1px solid var(--line-soft); border-radius: 0; }
+    header nav ul li a.nav-active { box-shadow: none; }
+    .has-sub > a::after { content: ""; }
+    .subnav { position: static; display: block; border: none; box-shadow: none; background: none; padding: 0.2rem 0 0.5rem 1.1rem; margin: 0; min-width: 0; }
+    .has-sub:hover .subnav, .has-sub:focus-within .subnav { display: block; }
+    .subnav li a { font-size: 0.92rem; border-bottom: none; padding: 0.4rem 0.25rem; white-space: normal; color: var(--muted); }
+    .language-switcher { border-left: none; padding: 0.6rem 0 0; margin: 0; }
 }

@@ -240,6 +240,7 @@ def build_article_html(data, slug, tag, date_str, date_display, pillar="Demand G
     <header>
         <div class="container">
             <a class="wordmark" href="/" aria-label="van Sas Sales &amp; Marketing"><span class="mark">van <em>Sas</em></span><span class="mark-sub">Sales &amp; Marketing</span></a>
+            <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var n=this.parentNode.querySelector('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">&#9776;</button>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
