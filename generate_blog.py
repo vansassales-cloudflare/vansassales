@@ -31,6 +31,14 @@ TOPICS = [
     {"topic": "Het compounding effect van consistente aanwezigheid in uw markt", "pillar": "Consistentie", "tag": "Consistentie"},
     {"topic": "AI-content in B2B: wanneer het werkt en wanneer het uw merk schaadt", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
     {"topic": "Hoe authentieke merken meer pipeline genereren dan gepolijste campagnes", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
+    {"topic": "Demand generation bureau kiezen: waar let u op", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "PR in de IT-vakpers: hoe uw verhaal in de vakmedia komt", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "Het ideale klantprofiel (ICP) opstellen: praktische aanpak voor B2B", "pillar": "Relevantie", "tag": "Relevantie"},
+    {"topic": "Sales uitbesteden in B2B: wanneer het werkt en wanneer niet", "pillar": "Sales", "tag": "Sales"},
+    {"topic": "Marketing uitbesteden of een intern team bouwen: de afweging", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "Account based marketing voor mkb en scale-ups: klein beginnen, groot raken", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Een IT-product verkopen aan niet-technische beslissers", "pillar": "Go-to-Market", "tag": "Go-to-Market"},
+    {"topic": "Fractional sales en marketing leadership: wat het is en voor wie het werkt", "pillar": "Interim", "tag": "Interim Sales"},
 ]
 
 # interne links per pijler: [artikel-slugs], (dienst-slug, dienstnaam)
