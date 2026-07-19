@@ -489,3 +489,15 @@ footer .copyright {
     section { padding: 3rem 0; }
     .article-hero h1 { font-size: 1.7rem; }
 }
+
+/* ---------- dienstpagina's & verder lezen ---------- */
+.article-body h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 1.6rem 0 0.4rem; }
+.article-body p a, .related-box a { color: var(--brass-deep); text-decoration: none; font-weight: 600; }
+.article-body p a:hover, .related-box a:hover { text-decoration: underline; }
+.related-box { border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: 1rem; }
+.related-box h2 { font-size: 1.2rem; margin: 0.6rem 0 0.8rem; }
+.related-box ul { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.5rem; }
+.related-box li a { font-family: var(--serif); font-size: 1.05rem; }
+.article-body .cta-block { margin-top: 2.5rem; }
+.svc-link { grid-column: 2; justify-self: start; margin-top: 0.6rem; font-size: 0.88rem; font-weight: 600; color: var(--brass-deep); text-decoration: none; }
+.svc-link:hover { color: var(--ink); }

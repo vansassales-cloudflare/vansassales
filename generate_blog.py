@@ -8,32 +8,78 @@ import random
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 
 TOPICS = [
-    {"topic": "Demand generation versus leadgeneratie: het fundamentele verschil dat uw aanpak bepaalt", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Waarom autoriteit de enige duurzame bron van B2B-pipeline is", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Community als demand generation kanaal: wat de data zegt", "pillar": "Community", "tag": "Community"},
-    {"topic": "Consistentie is de meest onderschatte groeistrategie in B2B", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Authenticiteit als onderscheidend vermogen in B2B-marketing", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-    {"topic": "Waarom 94% van B2B-kopers al een voorkeursleverancier heeft voor het eerste gesprek", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Het verschil tussen een netwerk en een community en waarom dat uw omzet bepaalt", "pillar": "Community", "tag": "Community"},
-    {"topic": "Hoe thought leadership werkt als je het consequent volhoudt", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Waarom de meeste B2B-contentstrategieeen na drie maanden stoppen", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Dark social en de onzichtbare koopbeslissing: wat B2B-marketeers missen", "pillar": "Relevantie", "tag": "Demand Generation"},
-    {"topic": "Hoe authentieke merken meer pipeline genereren dan gepolijste campagnes", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-    {"topic": "Waarom kopers AI-gegenereerde content meteen herkennen en wat dat betekent voor uw strategie", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
-    {"topic": "Het compounding effect van consistente aanwezigheid in uw markt", "pillar": "Consistentie", "tag": "Consistentie"},
-    {"topic": "Hoe je een B2B-community opbouwt die daadwerkelijk pipeline genereert", "pillar": "Community", "tag": "Community"},
-    {"topic": "Relevantie is geen contentprobleem het is een strategie-probleem", "pillar": "Relevantie", "tag": "Relevantie"},
-    {"topic": "Waarom de marketingfunnel niet meer bestaat en wat ervoor in de plaats is gekomen", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Autoriteit in een niche: waarom smal beter is dan breed", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Hoe community-led growth werkt voor kleine B2B-teams", "pillar": "Community", "tag": "Community"},
-    {"topic": "Van campagnedenken naar altijd-aan marketing: de mentale switch die alles verandert", "pillar": "Consistentie", "tag": "Demand Generation"},
-    {"topic": "Hoe moderne B2B-kopers beslissingen nemen en wat dat betekent voor uw go-to-market", "pillar": "Demand Generation", "tag": "Demand Generation"},
-    {"topic": "Buitenlandse bedrijven in Nederland: hoe demand generation werkt in een nieuwe markt", "pillar": "Demand Generation", "tag": "Marktentree"},
+    # zoekwoord-gerichte onderwerpen: het onderwerp is tegelijk de zoekvraag waarop het artikel moet ranken
+    {"topic": "Wanneer heeft uw organisatie een interim sales directeur nodig", "pillar": "Interim", "tag": "Interim Sales"},
+    {"topic": "Interim sales directeur inhuren: wat het kost en wat het oplevert", "pillar": "Interim", "tag": "Interim Sales"},
+    {"topic": "Interim marketing directeur: wanneer tijdelijk leiderschap meer oplevert dan werven", "pillar": "Interim", "tag": "Interim Sales"},
+    {"topic": "Salesproces optimaliseren in B2B: waar de meeste omzet weglekt", "pillar": "Sales", "tag": "Sales"},
+    {"topic": "Sales enablement in B2B: van dik handboek naar dagelijkse praktijk", "pillar": "Sales", "tag": "Sales"},
+    {"topic": "Sales en marketing alignment: waarom het misgaat en hoe het wel kan", "pillar": "Sales", "tag": "Sales"},
+    {"topic": "B2B leadgeneratie zonder koude acquisitie: wat werkt er echt", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Demand generation strategie opzetten: een praktisch stappenplan", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Dark social en de onzichtbare koopbeslissing: wat B2B-marketeers missen", "pillar": "Demand Generation", "tag": "Demand Generation"},
+    {"topic": "Go-to-market strategie voor SaaS- en IT-bedrijven in Nederland", "pillar": "Go-to-Market", "tag": "Go-to-Market"},
+    {"topic": "Marktentree in Nederland: go-to-market voor buitenlandse techbedrijven", "pillar": "Marktentree", "tag": "Marktentree"},
+    {"topic": "Uw B2B-positionering aanscherpen: een praktische aanpak", "pillar": "Relevantie", "tag": "Relevantie"},
     {"topic": "Hoe je bepaalt wat je doelgroep echt bezighoudt en hoe je daarop inspeelt", "pillar": "Relevantie", "tag": "Relevantie"},
-    {"topic": "LinkedIn als demand generation kanaal: van likes naar pipeline", "pillar": "Community", "tag": "Community"},
-    {"topic": "Thought leadership zonder zelfpromotie: hoe je autoriteit opbouwt door anderen te helpen", "pillar": "Autoriteit", "tag": "Autoriteit"},
-    {"topic": "Waarom B2B-kopers vertrouwen op peers niet op vendors", "pillar": "Community", "tag": "Community"},
+    {"topic": "Thought leadership opbouwen: praktisch stappenplan voor B2B-bedrijven", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "Waarom autoriteit de enige duurzame bron van B2B-pipeline is", "pillar": "Autoriteit", "tag": "Autoriteit"},
+    {"topic": "LinkedIn-strategie voor B2B: van bedrijfspagina naar pipeline", "pillar": "Community", "tag": "Community"},
+    {"topic": "Hoe je een B2B-community opbouwt die daadwerkelijk pipeline genereert", "pillar": "Community", "tag": "Community"},
+    {"topic": "Het verschil tussen een netwerk en een community en waarom dat uw omzet bepaalt", "pillar": "Community", "tag": "Community"},
+    {"topic": "Waarom consistentie in B2B-marketing meer oplevert dan budget", "pillar": "Consistentie", "tag": "Consistentie"},
+    {"topic": "Het compounding effect van consistente aanwezigheid in uw markt", "pillar": "Consistentie", "tag": "Consistentie"},
+    {"topic": "AI-content in B2B: wanneer het werkt en wanneer het uw merk schaadt", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
+    {"topic": "Hoe authentieke merken meer pipeline genereren dan gepolijste campagnes", "pillar": "Authenticiteit", "tag": "Authenticiteit"},
 ]
+
+# interne links per pijler: [artikel-slugs], (dienst-slug, dienstnaam)
+RELATED_POOL = {
+    "Demand Generation": ["demand-generation-vs-leadgeneratie", "hoe-b2b-kopers-beslissen-voordat-u-berhaupt-belt"],
+    "Community": ["community-als-demand-gen-kanaal-wat-de-data-onthult", "linkedin-als-demand-generation-kanaal-van-likes-naar-pipeline"],
+    "Autoriteit": ["autoriteit-in-een-niche-waarom-smal-altijd-wint", "thought-leadership-werkt-alleen-als-je-het-volhoudt"],
+    "Consistentie": ["consistentie-de-meest-onderschatte-groeistrategie-in-b2b", "waarom-consistente-marktaanwezigheid-uw-sterkste-verkooptool-is"],
+    "Authenticiteit": ["waarom-b2b-kopers-ai-content-meteen-doorzien", "authentieke-merken-winnen-de-pipeline-strijd-van-gepolijste-campagnes"],
+    "Relevantie": ["relevantie-is-geen-contentprobleem-het-is-een-strategie-probleem", "wat-je-doelgroep-echt-bezighoudt-en-hoe-je-daarop-inspeelt"],
+    "Interim": ["van-50-naar-400-miljoen", "go-to-market-it-sector"],
+    "Sales": ["94-van-b2b-kopers-kiest-leverancier-vr-eerste-gesprek", "waarom-b2b-kopers-peers-vertrouwen-en-vendors-negeren"],
+    "Go-to-Market": ["go-to-market-it-sector", "demand-generation-vs-leadgeneratie"],
+    "Marktentree": ["go-to-market-it-sector", "demand-generation-vs-leadgeneratie"],
+}
+SERVICE_LINK = {
+    "Demand Generation": ("leadgeneratie", "Leadgeneratie & Demand Generation"),
+    "Community": ("leadgeneratie", "Leadgeneratie & Demand Generation"),
+    "Autoriteit": ("marketing-communicatie", "Marketing & Communicatie"),
+    "Consistentie": ("marketing-communicatie", "Marketing & Communicatie"),
+    "Authenticiteit": ("marketing-communicatie", "Marketing & Communicatie"),
+    "Relevantie": ("positionering-marktanalyse", "Positionering & Marktanalyse"),
+    "Interim": ("interim-sales-directeur", "Interim Sales Directeur"),
+    "Sales": ("sales-optimalisatie", "Commerciële Optimalisatie & Sales"),
+    "Go-to-Market": ("go-to-market-strategie", "Go-to-Market Strategie"),
+    "Marktentree": ("go-to-market-strategie", "Go-to-Market Strategie"),
+}
+
+
+def article_title(slug):
+    try:
+        with open(f'blog/{slug}.html', encoding='utf-8') as f:
+            m = re.search(r'<title>(.*?)</title>', f.read(), re.S)
+        return m.group(1).split('|')[0].strip()
+    except Exception:
+        return slug.replace('-', ' ').capitalize()
+
+
+def related_block(pillar, own_slug):
+    pool = [s for s in RELATED_POOL.get(pillar, RELATED_POOL["Demand Generation"]) if s != own_slug][:2]
+    svc_slug, svc_name = SERVICE_LINK.get(pillar, SERVICE_LINK["Demand Generation"])
+    items = "\n".join(f'                <li><a href="/blog/{s}.html">{article_title(s)}</a></li>' for s in pool)
+    return f'''<div class="related-box">
+                <h2>Verder lezen</h2>
+                <ul>
+{items}
+                </ul>
+                <p>Meer weten over hoe ik dit in de praktijk aanpak? Bekijk mijn dienst <a href="/{svc_slug}/">{svc_name}</a>.</p>
+            </div>'''
 
 RESEARCH_FACTS = [
     "94% van B2B-koopgroepen heeft al een voorkeursleverancier bepaald voor het eerste gesprek met sales (6sense, 2025)",
@@ -100,6 +146,8 @@ PILLAR: {pillar}
 
 TONE: Independent expert analysis. No personal career stories. No "I have X years experience". Write like a respected industry analyst sharing market insights. Direct, critical, substantive. Use concrete data.
 
+SEO: The topic doubles as the target search query. Use its main keyword naturally in the title, the first paragraph and at least one section heading — never forced or repeated unnaturally.
+
 RESEARCH DATA (include at least 2 facts naturally):
 {facts_text}
 
@@ -138,7 +186,8 @@ Return ONLY valid JSON, no markdown, no backticks. Straight double quotes only.
     ]
     return data
 
-def build_article_html(data, slug, tag, date_str, date_display):
+def build_article_html(data, slug, tag, date_str, date_display, pillar="Demand Generation"):
+    related = related_block(pillar, slug)
     sections_html = ""
     for section in data['sections']:
         content = section['content'].replace('\n\n', '</p><p>').replace('\n', ' ')
@@ -217,6 +266,7 @@ def build_article_html(data, slug, tag, date_str, date_display):
             <div class="highlight-box"><p>&ldquo;{data['quote']}&rdquo;</p></div>
             {sections_html}
             <p>{data['conclusion']}</p>
+            {related}
             <div class="author-box">
                 <img src="../vincent.jpg" alt="Vincent van Sas" onerror="this.src='../vincent.png'">
                 <div>
@@ -298,7 +348,7 @@ def main():
     tag = topic_obj['tag']
 
     article_path = f'blog/{slug}.html'
-    article_html = build_article_html(data, slug, tag, date_str, date_display)
+    article_html = build_article_html(data, slug, tag, date_str, date_display, topic_obj['pillar'])
     with open(article_path, 'w', encoding='utf-8') as f:
         f.write(article_html)
     print(f"Artikel: {article_path}")
