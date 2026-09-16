@@ -342,4 +342,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.vansassales.nl/blog/thought-leadership-opbouwen-praktisch-stappenplan-voor-b2b-bedrijven.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
