@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Continuous-Q® Prijslijst</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: Q-Cyber-donker, bewust één thema. Hero → kwartaalcyclus → modulekaarten met vaste totaalbalk */
+:root{
+  --bg:#0a111c; --bg2:#0e1726; --card:#121d2f; --line:#22324a; --fg:#eaf1f8; --muted:#93a4ba;
+  --cyan:#38d3f0; --pink:#f472b6; --good:#4ade80;
+  --display:"Sora",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:1140px;margin:0 auto;padding-inline:20px}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+a{color:var(--cyan)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:56px 40px;border-bottom:1px solid var(--line)}
+.hero canvas{position:absolute;right:-60px;top:-40px;width:520px;height:520px;max-width:none;opacity:.85;pointer-events:none}
+.hero .wrap{position:relative}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;letter-spacing:.04em}
+.logo i{width:34px;height:34px;border-radius:8px;background:var(--fg);display:grid;place-items:center}
+.logo i::after{content:"";width:16px;height:16px;border:3.5px solid var(--bg);border-radius:50%;position:relative;left:-1px;top:-1px;box-shadow:5px 5px 0 -3px var(--bg)}
+.hero h1{font-size:clamp(2rem,5.2vw,3.4rem);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-top:28px;max-width:16ch}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:58ch;margin:.9rem 0 0;font-size:1.05rem}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.facts b{color:var(--fg);font-weight:500}
+
+/* cyclus */
+.cycle{padding-block:40px;border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px;counter-reset:s}
+@media(max-width:760px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.step{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.step .q{font-family:var(--mono);font-size:.75rem;color:var(--cyan)}
+.step h3{font-size:1rem;margin:.25rem 0 .2rem}
+.step p{margin:0;color:var(--muted);font-size:.88rem}
+.loop{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top:10px}
+
+/* configurator */
+.conf{padding-block:40px 140px}
+.bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:inherit;font-size:.88rem;border:1px solid var(--line);background:var(--bg2);color:var(--muted);padding:.5rem .9rem;border-radius:8px;cursor:pointer;text-align:left}
+.seg button small{display:block;font-family:var(--mono);font-size:.72rem}
+.seg button[aria-pressed="true"]{color:var(--fg);border-color:var(--cyan);background:#10303d}
+.ctl{display:flex;flex-direction:column;gap:6px}
+.ctl>span{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;margin-top:26px;align-items:start}
+@media(max-width:920px){.layout{grid-template-columns:minmax(0,1fr)}}
+.grp{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 10px;gap:12px}
+.grp h3{font-size:.8rem;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0;transition:border-color .15s,background .15s}
+.card.on{border-color:var(--cyan);background:#0f2433}
+.card.base{border-color:var(--cyan);background:linear-gradient(135deg,#0f2433,#1d1530)}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.card h4{font-family:var(--display);font-size:1.05rem;margin:0}
+.price{font-family:var(--mono);font-size:.95rem;white-space:nowrap;text-align:right}
+.price small{display:block;color:var(--muted);font-size:.72rem}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chips span{font-size:.72rem;font-family:var(--mono);color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:.05rem .5rem}
+.card p{margin:0;font-size:.9rem;color:#c6d2e0}
+.card details{font-size:.86rem;color:var(--muted)}
+.card summary{cursor:pointer;color:var(--cyan);font-size:.82rem;list-style:none}
+.card summary::-webkit-details-marker{display:none}
+.card summary::before{content:"+ ";font-family:var(--mono)}
+.card details[open] summary::before{content:"− "}
+.card dl{margin:.5rem 0 0;display:grid;gap:6px}
+.card dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg)}
+.card dd{margin:0}
+.add{margin-top:auto;font:inherit;font-weight:600;font-size:.9rem;border:1px solid var(--cyan);background:transparent;color:var(--cyan);border-radius:8px;padding:.5rem;cursor:pointer}
+.card.on .add{background:var(--cyan);color:var(--bg)}
+.add:focus-visible,.seg button:focus-visible,.btn:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.incl{font-family:var(--mono);font-size:.8rem;color:var(--cyan)}
+
+/* overzicht */
+.sum{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.sum .total{font-family:var(--display);font-weight:800;font-size:2.3rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.1;margin-top:4px}
+.sum .sub{color:var(--muted);font-size:.85rem}
+.lines{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:4px;font-size:.88rem;max-height:220px;overflow:auto}
+.lines li{display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums}
+.lines li span:last-child{font-family:var(--mono);color:var(--muted)}
+.row{display:flex;justify-content:space-between;gap:10px;padding:.3rem 0;font-variant-numeric:tabular-nums}
+.row .v{font-family:var(--mono)}
+.row.good .v{color:var(--good)}
+hr{border:0;border-top:1px solid var(--line);margin:12px 0}
+.note{font-size:.84rem;background:#10303d;border-radius:8px;padding:.6rem .75rem;margin-top:10px}
+.btn{font:inherit;font-size:.82rem;font-weight:600;border:0;background:var(--cyan);color:var(--bg);border-radius:6px;padding:.35rem .7rem;cursor:pointer;margin-top:6px}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--fg)}
+
+/* mobiele balk */
+.mbar{position:fixed;left:0;right:0;bottom:0;background:var(--bg2);border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));display:none;justify-content:space-between;align-items:center;gap:12px;z-index:5}
+.mbar b{font-family:var(--display);font-size:1.3rem}
+.mbar span{font-size:.8rem;color:var(--muted)}
+@media(max-width:920px){.mbar{display:flex}.sum{position:static}}
+
+footer{border-top:1px solid var(--line);padding-block:28px 40px;color:var(--muted);font-size:.84rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+@media(prefers-reduced-motion:reduce){.hero canvas{display:none}}
+</style>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<section class="hero">
+  <canvas id="blob" width="520" height="520" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="logo"><i></i>Q-CYBER</div>
+    <div class="eyebrow" style="margin-top:34px">Continuous-Q® · Kwartaalpentest met uitvoeringsplan</div>
+    <h1>You know what you know, <em>we show what you don't know</em></h1>
+    <p>Elk kwartaal een pentest op de onderdelen die u kiest, met een uitvoeringsplan dat technisch risico vertaalt naar concrete stappen. Stel hieronder uw eigen pakket samen.</p>
+    <div class="facts"><span><b>4×</b> per jaar getest</span><span><b>12</b> modules</span><span><b>1–3</b> jaar looptijd</span><span>Prijzen excl. btw</span></div>
+  </div>
+</section>
+
+<section class="cycle">
+  <div class="wrap">
+    <div class="eyebrow">Zo werkt het</div>
+    <h2 style="font-size:1.5rem;margin-top:6px">Elk kwartaal dezelfde cyclus</h2>
+    <div class="steps">
+      <div class="step"><div class="q">01</div><h3>Monitoren</h3><p>Geplande scans en doorlopende monitoring van uw omgeving.</p></div>
+      <div class="step"><div class="q">02</div><h3>Analyseren</h3><p>Bevindingen gecorreleerd tot realistische attack paths.</p></div>
+      <div class="step"><div class="q">03</div><h3>Rapporteren</h3><p>Kwartaalrapport met prioritering en trendanalyse.</p></div>
+      <div class="step"><div class="q">04</div><h3>Verbeteren</h3><p>Uitvoeringsplan met concrete remediatiestappen.</p></div>
+    </div>
+    <div class="loop">↺ en terug naar Monitoren, het volgende kwartaal</div>
+  </div>
+</section>
+
+<section class="conf">
+  <div class="wrap">
+    <div class="bar">
+      <div>
+        <div class="eyebrow">Stel uw pakket samen</div>
+        <h2 style="font-size:1.5rem;margin-top:6px">Kies uw modules</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:18px">
+        <div class="ctl"><span>Looptijd</span><div class="seg" id="terms"></div></div>
+        <div class="ctl"><span>Prijsweergave</span><div class="seg" id="view">
+          <button type="button" data-v="end">Eindklant</button>
+          <button type="button" data-v="msp">MSP</button>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div id="mods"></div>
+      <aside class="sum" id="sum" aria-live="polite"></aside>
+    </div>
+  </div>
+</section>
+
+<div class="mbar" id="mbar"><div><span id="mbTerm"></span><br><b id="mbTotal"></b></div><a class="btn" href="#sum" style="text-decoration:none">Overzicht</a></div>
+
+<footer>
+  <div class="wrap">
+    <div>Alle prijzen exclusief btw. Reiskosten bij on-site werkzaamheden apart. Prijslijst geldig tot en met 31 december 2026.</div>
+    <div class="mono">Q-Cyber · Kapitein Nemostraat 20, Emmen · info@q-cyber.nl · 0591 708 004</div>
+  </div>
+</footer>
+
+<script>
+const BASE={name:"Basis",price:250,text:"Geautomatiseerde netwerkscan op één segment, elk kwartaal een rapport met prioritering en een uitvoeringsplan.",chips:["Netwerkscan","Kwartaalrapport","Uitvoeringsplan"]};
+const MODS=[
+ {id:"web",g:"t",name:"Webserver",price:80,chips:["Webapps","API's","Authenticatie","TLS","Sessies"],
+  text:"Handmatige analyse van de volledige request-response-keten, van TLS-negotiation tot sessiebeheer.",
+  look:"Input handling, authenticatie, autorisatie, response headers, cryptografie en exploiteerbare aanvalsketens.",
+  res:"Gecorreleerde, aantoonbare exploitpaden in plaats van losse bevindingen."},
+ {id:"azure",g:"t",name:"Azure Policies",price:80,chips:["RBAC","Management Groups","Storage","NSG's","Key Vault"],
+  text:"De volledige autorisatieketen in de Azure-tenant, van RBAC tot cross-subscription trust.",
+  look:"Storage accounts, network security groups, Key Vault policies, trust-relaties en privilege-escalatiepaden.",
+  res:"Escalatie- en laterale paden die bij losse beoordeling onzichtbaar blijven."},
+ {id:"entra",g:"t",name:"Entra ID",price:80,chips:["Identity","Conditional Access","MFA","PIM"],
+  text:"Reconstructie van de authenticatieflow, van sign-in via conditional access tot token-issuance en PIM.",
+  look:"MFA-gaps, conditional access-uitzonderingen, stale en overbevoegde accounts, token- en PIM-zwakheden.",
+  res:"Aantoonbare paden voor account takeover, persistence en privilege escalation."},
+ {id:"intune",g:"t",name:"Intune",price:80,chips:["Endpoint Mgmt","Enrollment","Compliance","App Protection"],
+  text:"Controle of endpoint policies echt worden afgedwongen, van enrollment tot app protection.",
+  look:"Verschil tussen beleid en praktijk, onbeheerde apparaten, enrollment-zwakheden en app-protection bypasses.",
+  res:"Hoe onbeheerde apparaten als initial access de bredere omgeving raken."},
+ {id:"m365",g:"t",name:"M365",price:80,chips:["SharePoint","OneDrive","Teams","Exchange","DLP"],
+  text:"De volledige datalevenscyclus binnen M365, van delen in SharePoint tot mailflow in Exchange.",
+  look:"Omzeilbaarheid van DLP, overmatige deelrechten, gasttoegang en transportregels.",
+  res:"End-to-end exfiltratiescenario's over de organisatiegrens heen."},
+ {id:"net",g:"t",name:"Networking",price:80,chips:["Segmentatie","VLAN's","Firewall","DNS"],
+  text:"Controle of segmentatie echt east-west verkeer beperkt, van VLAN tot DNS-resolutie.",
+  look:"Zwakheden in regelsets, routeringsfouten en fouten in naamresolutie.",
+  res:"Aantoonbare laterale paden tussen segmenten."},
+ {id:"wifi",g:"t",name:"WiFiSec",price:80,chips:["WPA2/WPA3-Enterprise","Rogue AP's","Evil twin"],
+  text:"De draadloze associatie- en authenticatieflow, van probe request tot netwerktoegang.",
+  look:"Rogue access points, evil twin-vectoren en protocol-level zwakheden.",
+  res:"Of draadloze compromittering leidt tot toegang tot het bedrijfsnetwerk."},
+ {id:"ot",g:"t",name:"OT",price:80,chips:["IT/OT-grens","ICS/SCADA","Legacy-protocollen","Remote access"],
+  text:"De communicatieketen tussen IT en OT, op zoek naar pivotpaden naar ICS/SCADA.",
+  look:"Segmentatie, blootstelling van legacy-protocollen en remote-toegangsmechanismen.",
+  res:"Hoe een aanvaller vanuit IT blijvende toegang krijgt tot operationele technologie."},
+ {id:"se",g:"t",name:"Social Engineering",price:80,chips:["Phishing","Pretexting","Credential harvesting","Fysiek"],
+  text:"Aanvalsscenario's op maat die de volledige kill chain doorlopen.",
+  look:"Kwetsbaarheid over de hele kill chain, niet alleen klikpercentages.",
+  res:"Hoe social engineering de technische verdediging omzeilt."},
+ {id:"comp",g:"o",name:"Compliance",price:50,chips:["ISO 27001","SOC 2","BIO","NEN 7510","AVG","DORA"],
+  text:"Toetsing of gedocumenteerde controls in de praktijk ook werken, per normvereiste.",
+  look:"Gaps tussen beleid en realiteit, gekoppeld aan technische bevindingen uit andere modules.",
+  res:"Inzicht waar compliance op papier bestaat maar de beveiliging tekortschiet."},
+ {id:"gov",g:"o",name:"Governance",price:50,chips:["Besluitvorming","Escalatie","RACI","Vendors"],
+  text:"Toetsing of het governance-model onder druk standhoudt, gespiegeld aan de technische bevindingen.",
+  look:"RACI-matrices, risicomanagement-frameworks en vendor-afspraken.",
+  res:"Of governance overeind blijft wanneer een echt incident de theorie test."},
+ {id:"nis2",g:"o",name:"NIS2",price:50,chips:["Readiness","Gap-analyse","Roadmap"],
+  text:"De NIS2-verplichtingen naast de feitelijke security posture gelegd.",
+  look:"Readiness-gaps in technische en organisatorische domeinen.",
+  res:"Gap-analyse en implementatie-roadmap, onderbouwd met aantoonbare bevindingen."}
+];
+const PKG=1000;
+const TERMS=[{y:1,setup:5000,df:12500/17000},{y:2,setup:2500,df:20000/26500},{y:3,setup:0,df:27000/36000}];
+let st={t:0,view:"end",sel:new Set()};
+const eur=n=>"€"+Math.round(n).toLocaleString("nl-NL");
+const r50=n=>Math.round(n/50)*50,f50=n=>Math.floor(n/50)*50;
+const $=id=>document.getElementById(id);
+
+function calc(ti,sel){
+  const t=TERMS[ti],months=t.y*12;
+  const loose=BASE.price+MODS.filter(m=>sel.has(m.id)).reduce((a,m)=>a+m.price,0);
+  const month=Math.min(loose,PKG);
+  const end=t.setup+month*months;
+  const msp=f50(r50(end*t.df)/0.85);
+  return{t,months,loose,month,end,msp,disc:loose-month};
+}
+const shown=c=>st.view==="msp"?c.msp:c.end;
+
+function renderTerms(){
+  $("terms").innerHTML=TERMS.map((t,i)=>`<button type="button" aria-pressed="${i===st.t}" data-i="${i}">${t.y} jaar<small>${t.setup?eur(t.setup)+" setup":"geen setup"}</small></button>`).join("");
+  $("terms").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.t=+b.dataset.i;render()});
+  $("view").querySelectorAll("button").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.v===st.view);b.onclick=()=>{st.view=b.dataset.v;render()}});
+}
+function card(m){
+  const on=st.sel.has(m.id);
+  return `<article class="card ${on?"on":""}">
+    <div class="top"><h4>${m.name}</h4><div class="price">+ ${eur(m.price)}<small>per maand</small></div></div>
+    <div class="chips">${m.chips.map(c=>`<span>${c}</span>`).join("")}</div>
+    <p>${m.text}</p>
+    <details><summary>Meer over deze module</summary><dl><dt>Wat we onderzoeken</dt><dd>${m.look}</dd><dt>Resultaat</dt><dd>${m.res}</dd></dl></details>
+    <button class="add" type="button" id="add-${m.id}" data-id="${m.id}" aria-pressed="${on}">${on?"✓ Toegevoegd":"+ Toevoegen"}</button>
+  </article>`;
+}
+function renderMods(){
+  const n=st.sel.size;
+  let h=`<div class="grp" style="margin-top:0"><h3>Altijd inbegrepen</h3></div>
+  <div class="cards"><article class="card base"><div class="top"><h4>${BASE.name}</h4><div class="price">${eur(BASE.price)}<small>per maand</small></div></div>
+  <div class="chips">${BASE.chips.map(c=>`<span>${c}</span>`).join("")}</div><p>${BASE.text}</p><div class="incl">✓ Standaard in elk contract</div></article></div>`;
+  [["t","Technische modules"],["o","Organisatorische modules"]].forEach(([g,l])=>{
+    h+=`<div class="grp"><h3>${l}</h3></div><div class="cards">${MODS.filter(m=>m.g===g).map(card).join("")}</div>`;
+  });
+  $("mods").innerHTML=h;
+  $("mods").querySelectorAll(".add").forEach(b=>b.onclick=()=>{const id=b.dataset.id;st.sel.has(id)?st.sel.delete(id):st.sel.add(id);render();const nb=$("add-"+id);if(nb)nb.focus()});
+}
+function renderSum(){
+  const c=calc(st.t,st.sel),all=st.sel.size===MODS.length,v=st.view==="msp";
+  const picked=MODS.filter(m=>st.sel.has(m.id));
+  let note="";
+  if(all) note=`<div class="note">Volledig pakket: u bespaart ${eur(c.disc)} per maand ten opzichte van losse modules.</div>`;
+  else if(c.disc>0) note=`<div class="note">Uw selectie bereikt de pakketprijs. Voor hetzelfde bedrag krijgt u alle modules.<br><button class="btn" type="button" id="up">Alle modules toevoegen</button></div>`;
+  else if(st.sel.size) note=`<div class="note">Nog ${eur(PKG-c.month)} per maand tot het volledige pakket met alle 12 modules.</div>`;
+  $("sum").innerHTML=`
+    <div class="eyebrow">${v?"MSP-prijs":"Eindklantprijs"} · ${c.t.y}-jarig contract</div>
+    <div class="total">${eur(shown(c))}</div>
+    <div class="sub">totaal over ${c.months} maanden, excl. btw</div>
+    <ul class="lines">
+      <li><span>Basis</span><span>${eur(BASE.price)}</span></li>
+      ${picked.map(m=>`<li><span>${m.name}</span><span>${eur(m.price)}</span></li>`).join("")}
+    </ul>
+    <hr>
+    <div class="row"><span>Modules los</span><span class="v">${eur(c.loose)} p/m</span></div>
+    ${c.disc>0?`<div class="row good"><span>Pakketvoordeel</span><span class="v">− ${eur(c.disc)} p/m</span></div>`:""}
+    <div class="row"><span>Maandbedrag</span><span class="v">${eur(c.month)} p/m</span></div>
+    <div class="row"><span>Setup</span><span class="v">${c.t.setup?eur(c.t.setup):"geen"}</span></div>
+    ${v?`<hr><div class="row"><span>Eindklantprijs</span><span class="v">${eur(c.end)}</span></div><div class="row good"><span>Voordeel MSP</span><span class="v">${eur(c.end-c.msp)} (${((c.end-c.msp)/c.end*100).toFixed(1).replace(".",",")}%)</span></div>`:""}
+    ${note}
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" type="button" id="all">Volledig pakket</button>
+      <button class="btn ghost" type="button" id="none">Leegmaken</button>
+    </div>`;
+  const all2=()=>{MODS.forEach(m=>st.sel.add(m.id));render()};
+  $("all").onclick=all2; if($("up"))$("up").onclick=all2;
+  $("none").onclick=()=>{st.sel.clear();render()};
+  $("mbTerm").textContent=`${v?"MSP":"Eindklant"} · ${c.t.y} jaar · ${st.sel.size} modules`;
+  $("mbTotal").textContent=eur(shown(c));
+}
+function render(){renderTerms();renderMods();renderSum();}
+["web","entra","m365"].forEach(id=>st.sel.add(id)); // voorbeeldselectie
+render();
+
+/* sfeerbeeld: zachte vloeibare blob in Q-Cyber-kleuren */
+(function(){
+  const cv=$("blob");if(!cv||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const x=cv.getContext("2d"),W=520,cx=260,cy=260;let t=0;
+  function frame(){
+    x.clearRect(0,0,W,W);
+    for(let k=0;k<3;k++){
+      x.beginPath();
+      for(let a=0;a<=Math.PI*2+.01;a+=Math.PI/90){
+        const r=150-k*22+18*Math.sin(3*a+t*(1+k*.3))+12*Math.sin(5*a-t*.7)+8*Math.cos(7*a+t*.5);
+        const px=cx+r*Math.cos(a),py=cy+r*Math.sin(a);a?x.lineTo(px,py):x.moveTo(px,py);
+      }
+      const g=x.createRadialGradient(cx-60,cy-60,20,cx,cy,200);
+      g.addColorStop(0,k===2?"rgba(255,255,255,.55)":"rgba(56,211,240,.55)");
+      g.addColorStop(.55,"rgba(244,114,182,.35)");g.addColorStop(1,"rgba(76,29,149,.05)");
+      x.fillStyle=g;x.globalAlpha=k?.6:.9;x.fill();
+    }
+    x.globalAlpha=1;t+=.012;requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+</body>
+</html>
